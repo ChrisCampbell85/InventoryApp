@@ -1,9 +1,11 @@
+
 def create_inventory():
 
     """Creates Inventory Dictionary"""
 
+    separator = ', '
     inventory = {}
-    stock_type_options = {'1': 'Single', '2': '4-pack', '3': '6-pack', '4': 'Carton'}
+    stock_type_options = "1: Single\n2: 4-pack\n3: 6-pack\n4: Carton"
 
     while True:
         
@@ -17,20 +19,21 @@ def create_inventory():
             break
 
         while True:
-            print("\nStock type options to choose from are:\n")
-            for key, value in stock_type_options.items():
-                print(key +': ' + value)
-            stock_type = input("\nPlease enter type:\nType 'quit to exit\n")
-
+            stock_type = input("\nPlease enter type:\nType 'quit to exit\n" + stock_type_options + "\n> ")
             if stock_type == 'quit':
                 break
-            if stock_type not in stock_type_options:
+            if stock_type == '1':
+                stock_type = 'Single'
+            elif stock_type == '2':
+                stock_type = '4-pack'
+            elif stock_type == '3':
+                stock_type = '6-pack'
+            elif stock_type == '4':
+                stock_type = 'Carton'
+            else:
                 print("Please enter valid selection")
                 continue
-            for key, value in stock_type_options.items():
-                if stock_type == key:
-                    stock_type = value
-            print('\nYou have have selected: ' + stock_type + '\n')
+            print('\n' + stock_type + '\n')
 
             try:
                 stock_quantity = int(input("Please enter quantity:\n> "))
@@ -43,7 +46,7 @@ def create_inventory():
             inventory[company] = item
 
             # Unpacks key to print as text
-            inv = ', '.join(inventory)
+            inv = separator.join(inventory)
     
         print('\nYou have updated your inventory to:\n' + inv)
 
@@ -51,8 +54,10 @@ def create_inventory():
     
     # Iterate through dict
     for key, value in inventory.items():
-        print('\n-' + key + '-')
+        print('\n' + key + '\n')
         for key, value in value.items():
             print(key+ ': ' + str(value))
                 
     return inventory
+
+create_inventory()
