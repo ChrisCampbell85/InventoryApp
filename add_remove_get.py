@@ -97,8 +97,6 @@ def remove_from_inventory():
     with open(inventory_file, 'w') as json_file:
         json.dump(inventory_dictionary, json_file)
 
-remove_from_inventory()
-
 
 
 
